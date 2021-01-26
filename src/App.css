@@ -1,33 +1,17 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
 .app-wrapper{
     margin: 0 auto;
+    background-color: whitesmoke;
     display: grid;
-    grid-template-rows: 60px 1fr;
+    grid-template-rows: 70px 1fr;
     grid-template-columns: 2fr 10fr;
     grid-template-areas:
             "h h"
             "n p";
 }
 
-.header{
-    grid-area: h;
-    background-color: dodgerblue;
-}
 
-.nav{
-    grid-area: n;
-    background-color: silver;
-}
-
-.profile{
-    grid-area: p;
-    background-color: tomato;
-}
-
-.header img{
-    width: 50px;
-}
-
-#main-img {
-    width: 1138px;
-    height: 300px;
-}
