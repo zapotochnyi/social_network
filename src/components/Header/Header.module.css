@@ -1,0 +1,16 @@
+.header{
+    grid-area: h;
+    background-color: darkslategrey;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+
+}
+
+.header img{
+    width: 50px;
+    position: relative;
+    left: 90px;
+
+}

@@ -1,0 +1,22 @@
+.header{
+    box-sizing: border-box;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.textarea{
+    background-color: rgba(212, 201, 201, 0.91);
+    box-sizing: border-box;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 10px;
+    border: 1px solid grey;
+}
+
+.publish_btn{
+    width: 60px;
+    background-color: darkslategrey;
+    color: #f8f2f2;
+    position: relative;
+    left: 85%;
+}

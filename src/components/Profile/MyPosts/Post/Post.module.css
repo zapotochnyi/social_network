@@ -1,0 +1,53 @@
+.publications{
+    margin-top: 30px;
+}
+
+.post_item{
+    display: flex;
+    margin-bottom: 50px;
+
+}
+
+.avatar_mini{
+    width: 100px;
+    height: 100px;
+    border-radius: 100px;
+}
+
+.post_body{
+    box-sizing: border-box;
+    margin-left: 20px;
+    /*border-top: 1px solid grey;*/
+    border-bottom: 1px solid grey;
+    width: 80%;
+    height: 120px;
+    /*border-radius: 10px;*/
+}
+
+.text{
+    box-sizing: border-box;
+    padding: 10px;
+    width: 100%;
+    position: relative;
+    height: 65px;
+}
+
+.buttons{
+    display: flex;
+    justify-content: space-around;
+}
+
+.btn_wrap{
+    display: flex;
+    align-items: center;
+}
+
+.btn_item{
+    width: 30px;
+    height: 30px;
+}
+
+.quantity{
+    box-sizing: border-box;
+    margin-left: 5px;
+}

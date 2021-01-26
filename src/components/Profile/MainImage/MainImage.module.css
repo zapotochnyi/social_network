@@ -1,0 +1,9 @@
+.main_img :first-child {
+    width: 1138px;
+    height: 300px;
+    box-sizing: border-box;
+    border-radius: 20px;
+    border-top: 4px solid darkslategrey;
+    border-left: 2px solid darkslategrey;
+    border-right: 2px solid darkslategrey;
+}
