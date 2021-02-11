@@ -7,7 +7,8 @@ const NewPost = (props) => {
 
     let newPostText = () => {
         let text = newPost.current.value;
-        props.updateNewPostValue(text);
+        // props.updateNewPostValue(text);
+        props.dispatch({type: 'UPDATE-NEW-POST-VALUE', newText: text});
     }
 
     return (
@@ -16,10 +17,12 @@ const NewPost = (props) => {
                 My posts
             </h2>
             <div className={c.new_post}>
-                    <textarea onChange={newPostText} value={props.newPostValue} ref={newPost} className={c.textarea} name="new_post" cols="140" rows="8"
-                              placeholder={'what you thinking?'} />
+                <textarea onChange={newPostText} value={props.newPostValue} ref={newPost}
+                          className={c.textarea}
+                          name="new_post" cols="140" rows="8"
+                          placeholder={'what you thinking?'}/>
                 <br/>
-                <div onClick={props.addPost} className={c.publish_btn}>Publish</div>
+                <div onClick={props.dispatch({type: 'ADD-POST'})} className={c.publish_btn}>Publish</div>
             </div>
         </div>
     )

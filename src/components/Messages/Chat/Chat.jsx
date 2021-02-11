@@ -23,8 +23,7 @@ const Chat = (props) => {
                     {messageOutElement}
                 </div>
             </div>
-            <Input newMessageValue={props.newMessageValue} sendMessage={props.sendMessage}
-                   updateNewMessageValue={props.updateNewMessageValue}/>
+            <Input newMessageValue={props.newMessageValue} dispatch={props.dispatch} />
         </div>
     )
 

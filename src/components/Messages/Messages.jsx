@@ -9,7 +9,7 @@ const Messages = (props) => {
         <div className={c.messages_wrap}>
             <Dialogs dialogs={props.messagesPage.dialogs}/>
             <Chat messagesIn={props.messagesPage.messagesIn} newMessageValue={props.messagesPage.newMessageValue}
-                  messagesOut={props.messagesPage.messagesOut} sendMessage={props.sendMessage} updateNewMessageValue={props.updateNewMessageValue}/>
+                  messagesOut={props.messagesPage.messagesOut} dispatch={props.dispatch} />
         </div>
     )
 

@@ -10,7 +10,7 @@ const Profile = (props) => {
         <div className={c.profile_wrapper}>
             <MainImage/>
             <Description information={props.profilePage.information} avatars={props.profilePage.avatars}/>
-            <MyPosts posts={props.profilePage.posts} newPostValue={props.profilePage.newPostValue} addPost={props.addPost} updateNewPostValue={props.updateNewPostValue} />
+            <MyPosts posts={props.profilePage.posts} newPostValue={props.profilePage.newPostValue} dispatch={props.dispatch} />
         </div>
     )
 }
