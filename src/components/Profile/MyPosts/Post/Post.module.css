@@ -29,12 +29,18 @@
     padding: 10px;
     width: 100%;
     position: relative;
-    height: 65px;
 }
 
 .buttons{
     display: flex;
     justify-content: space-around;
+    position: relative;
+    top: 2em;
+}
+
+.buttons :last-child{
+    width: 25px;
+    height: 25px;
 }
 
 .btn_wrap{

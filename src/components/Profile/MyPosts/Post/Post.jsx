@@ -6,10 +6,9 @@ const Post = (props) => {
         <div className={c.publications}>
             <div className={c.post_item}>
                 <img className={c.avatar_mini}
-                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6-OX8ltKbi4MdCQa9BeV8l_36Z76lF4Qjeg&usqp=CAU"
-                     alt=""/>
+                     src={props.avatar}/>
                 <div className={c.post_body}>
-                    <h4>Backa Kartoflyanuy</h4>
+                    <h4>{props.name}</h4>
                     <div className={c.text}>{props.text}</div>
                     <div className={c.buttons}>
                         <div className={c.btn_wrap}>

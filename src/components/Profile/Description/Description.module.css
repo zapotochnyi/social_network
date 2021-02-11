@@ -6,28 +6,5 @@
     padding-left: 10px;
 }
 
-.avatar {
-    height: 202px;
-}
 
-.avatar :first-child{
-    width: 200px;
-    height: 200px;
-    border: 1px solid darkslategrey;
-    border-radius: 10px;
-}
 
-.information {
-    margin-left: 30px;
-}
-
-.information :first-child{
-    margin-bottom: 25px;
-    color: rgb(26, 22, 22);
-}
-
-.item{
-    color: rgb(26, 22, 22);
-    font-size: large;
-    margin-bottom: 15px;
-}

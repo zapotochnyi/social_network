@@ -1,11 +1,3 @@
-.profile {
-    grid-area: p;
-    background-color: whitesmoke;
-    margin-right: 10px;
+.profile_wrapper{
     box-sizing: border-box;
 }
-
-
-
-
-

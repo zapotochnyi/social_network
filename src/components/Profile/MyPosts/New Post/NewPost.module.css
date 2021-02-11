@@ -5,18 +5,24 @@
 }
 
 .textarea{
-    background-color: rgba(212, 201, 201, 0.91);
+    background-color: rgba(219, 211, 211, 0.91);
     box-sizing: border-box;
     padding: 10px;
     margin-bottom: 5px;
-    border-radius: 10px;
+    border-radius: 1em;
     border: 1px solid grey;
 }
 
+
 .publish_btn{
-    width: 60px;
+    width: 70px;
     background-color: darkslategrey;
     color: #f8f2f2;
     position: relative;
-    left: 85%;
+    left: 87%;
+    text-align: center;
+    cursor: pointer;
+    box-sizing: border-box;
+    padding: 5px;
+    border-radius: 1em;
 }

@@ -3,6 +3,10 @@
     padding: 0;
 }
 
+body{
+    background-color: whitesmoke;
+}
+
 .app-wrapper{
     margin: 0 auto;
     background-color: whitesmoke;
@@ -12,6 +16,14 @@
     grid-template-areas:
             "h h"
             "n p";
+}
+
+.content {
+    grid-area: p;
+    background-color: whitesmoke;
+    margin-right: 10px;
+    box-sizing: border-box;
+    width: 1095px;
 }
 
 
