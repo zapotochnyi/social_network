@@ -5,10 +5,16 @@ const NewPost = (props) => {
 
     let newPost = React.createRef();
 
+    let addPost = () => {
+        let action = {type: 'ADD-POST'};
+        props.dispatch(action)
+    }
+
     let newPostText = () => {
         let text = newPost.current.value;
         // props.updateNewPostValue(text);
-        props.dispatch({type: 'UPDATE-NEW-POST-VALUE', newText: text});
+        let action = {type: 'UPDATE-NEW-POST-VALUE', newText: text};
+        props.dispatch(action);
     }
 
     return (
@@ -22,7 +28,7 @@ const NewPost = (props) => {
                           name="new_post" cols="140" rows="8"
                           placeholder={'what you thinking?'}/>
                 <br/>
-                <div onClick={props.dispatch({type: 'ADD-POST'})} className={c.publish_btn}>Publish</div>
+                <div onClick={addPost} className={c.publish_btn}>Publish</div>
             </div>
         </div>
     )
