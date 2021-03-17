@@ -7,9 +7,8 @@ const Messages = (props) => {
 
     return (
         <div className={c.messages_wrap}>
-            <Dialogs dialogs={props.messagesPage.dialogs}/>
-            <Chat messagesIn={props.messagesPage.messagesIn} newMessageValue={props.messagesPage.newMessageValue}
-                  messagesOut={props.messagesPage.messagesOut} dispatch={props.dispatch} />
+            <Dialogs dialogs={props.messages.dialogs}/>
+            <Chat messages={props.messages} addMessage={props.addMessage} newMessageText={props.newMessageText}/>
         </div>
     )
 

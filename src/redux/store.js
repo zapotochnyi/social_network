@@ -1,6 +1,10 @@
+import profileReducer from "./profileReducer";
+import messagesReducer from "./messagesReducer";
+import navBarReducer from "./navBarReducer";
+
 let store = {
     _state: {
-        profilePage: {
+        profile: {
 
             information: [
                 {
@@ -44,7 +48,7 @@ let store = {
             ]
         },
 
-        messagesPage: {
+        messages: {
             dialogs: [
                 {
                     id: '1',
@@ -129,71 +133,12 @@ let store = {
 
 
     dispatch(action) {
-        debugger;
-        if (action.type === 'UPDATE-NEW-POST-VALUE') {
-            this._state.profilePage.newPostValue = action.newText;
-            this._callSubscriber(this._state);
+        this._state.profile = profileReducer(this._state.profile, action);
+        this._state.messages = messagesReducer(this._state.messages, action);
+        this._state.navBar = navBarReducer(this._state.navBar, action);
 
-        } else if (action.type === 'ADD-POST') {
-            let newPost = {
-                text: this._state.profilePage.newPostValue,
-                quantity_likes: 0,
-                quantity_reposts: 0,
-                avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6-OX8ltKbi4MdCQa9BeV8l_36Z76lF4Qjeg&usqp=CAU'
-            }
-            this._state.profilePage.posts.push(newPost);
-
-            this._state.profilePage.newPostValue = '';
-            this._callSubscriber(this._state);
-
-        } else if (action.type === 'UPDATE-NEW-MESSAGE-VALUE') {
-            debugger;
-            this._state.messagesPage.newMessageValue = action.newText;
-            this._callSubscriber(this._state);
-
-        } else if (action.type === 'SEND-MESSAGE') {
-            let newMessage = {
-                idOut: 3,
-                textOut: this._state.messagesPage.newMessageValue
-            };
-            this._state.messagesPage.messagesOut.push(newMessage);
-            this._state.messagesPage.newMessageValue = '';
-            this._callSubscriber(this._state);
-        }
+        this._callSubscriber(this._state);
     },
-
-    // updateNewPostValue(newText) {
-    //
-    //     this._state.profilePage.newPostValue = newText;
-    //     this._callSubscriber(this._state);
-    // },
-    // addPost() {
-    //
-    //     let newPost = {
-    //         text: this._state.profilePage.newPostValue,
-    //         quantity_likes: 0,
-    //         quantity_reposts: 0,
-    //         avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6-OX8ltKbi4MdCQa9BeV8l_36Z76lF4Qjeg&usqp=CAU'
-    //     }
-    //     this._state.profilePage.posts.push(newPost);
-    //
-    //     this._state.profilePage.newPostValue = '';
-    //     this._callSubscriber(this._state);
-    // },
-    // updateNewMessageValue(newText) {
-    //
-    //     this._state.messagesPage.newMessageValue = newText;
-    //     this._callSubscriber(this._state);
-    // },
-    // sendMessage() {
-    //     let newMessage = {
-    //         idOut: 3,
-    //         textOut: this._state.messagesPage.newMessageValue
-    //     };
-    //     this._state.messagesPage.messagesOut.push(newMessage);
-    //     this.updateNewMessageValue('');
-    //     this._callSubscriber(this._state);
-    // }
 
 }
 

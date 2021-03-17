@@ -7,9 +7,9 @@ import MessageOut from "./MessageOut/MessageOut";
 
 const Chat = (props) => {
 
-    let messageInElement = props.messagesIn.map(m => (<MessageIn idIn={m.idIn} textIn={m.textIn}/>))
+    let messageInElement = props.messages.messagesIn.map(m => (<MessageIn idIn={m.idIn} textIn={m.textIn}/>))
 
-    let messageOutElement = props.messagesOut.map(m => (<MessageOut idOut={m.idOut} textOut={m.textOut}/>));
+    let messageOutElement = props.messages.messagesOut.map(m => (<MessageOut idOut={m.idOut} textOut={m.textOut}/>));
 
     return (
         <div className={c.chat}>
@@ -23,7 +23,8 @@ const Chat = (props) => {
                     {messageOutElement}
                 </div>
             </div>
-            <Input newMessageValue={props.newMessageValue} dispatch={props.dispatch} />
+            <Input newMessageValue={props.messages.newMessageValue} addMessage={props.addMessage}
+                   newMessageText={props.newMessageText}/>
         </div>
     )
 

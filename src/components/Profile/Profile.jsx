@@ -9,8 +9,9 @@ const Profile = (props) => {
     return (
         <div className={c.profile_wrapper}>
             <MainImage/>
-            <Description information={props.profilePage.information} avatars={props.profilePage.avatars}/>
-            <MyPosts posts={props.profilePage.posts} newPostValue={props.profilePage.newPostValue} dispatch={props.dispatch} />
+            <Description information={props.profile.information} avatars={props.profile.avatars}/>
+            <MyPosts profile={props.profile} addPost={props.addPost}
+                     newPostText={props.newPostText}/>
         </div>
     )
 }
