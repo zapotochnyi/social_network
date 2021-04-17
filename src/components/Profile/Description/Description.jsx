@@ -1,20 +1,42 @@
 import React from 'react';
-import c from './Description.module.css';
-import Information from "./Information/Information";
-import Avatar from "./Avatar/Avatar";
+import s from './Description.module.css';
+import DefaultUserImg from "../../common/DefaultUserImg/DefaultUserImg";
 
 const Description = (props) => {
-    let informationElement = props.information
-        .map(i => (<Information name={i.name} date={i.date} city={i.city}
-                                education={i.education} web={i.web}/>))
-
-    let avatarElement = props.avatars.map(a => (<Avatar src={a.src} alt={a.alt}/>))
-
-
     return (
-        <div className={c.description}>
-            {avatarElement}
-            {informationElement}
+        <div className={s.description}>
+
+            <div className={s.avatar}>
+                {props.profileInfo.photos.large ? <img src={props.profileInfo.photos.large}/> : <DefaultUserImg/>}
+            </div>
+
+            <div className={s.information}>
+                <h2>{props.profileInfo.fullName}</h2>
+
+                <div className={s.item}>{props.profileInfo.aboutMe}</div>
+
+                <div className={s.item}>{props.profileInfo.lookingForAJob ?
+                    <span>{props.profileInfo.lookingForAJobDescription}</span> : null}
+                </div>
+
+                <div className={s.item}>{props.profileInfo.contacts.facebook ?
+                    <a href={props.profileInfo.contacts.facebook} target="_blank">facebook,{' '}</a> : null}
+
+                    {props.profileInfo.contacts.vk ?
+                        <a href={props.profileInfo.contacts.vk} target="_blank">vk,{' '}</a> : null}
+
+                    {props.profileInfo.contacts.twitter ?
+                        <a href={props.profileInfo.contacts.twitter} target="_blank">twitter,{' '}</a> : null}
+
+                    {props.profileInfo.contacts.instagram ?
+                        <a href={props.profileInfo.contacts.instagram} target="_blank">instagram,{' '}</a> : null}
+
+                    {props.profileInfo.contacts.github ?
+                        <a href={props.profileInfo.contacts.github} target="_blank">github</a> : null}
+                </div>
+
+            </div>
+
         </div>
     )
 }

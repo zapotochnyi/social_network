@@ -3,6 +3,7 @@ import c from './Chat.module.css'
 import MessageIn from "./MessageIn/MessageIn";
 import Input from "./Input/Input";
 import MessageOut from "./MessageOut/MessageOut";
+import JobStatusIcon from "../../common/JobStatusIcon/JobStatusIcon";
 
 
 const Chat = (props) => {

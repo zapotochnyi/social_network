@@ -5,6 +5,7 @@
     margin-bottom: 10px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
 
 }
 
@@ -13,4 +14,25 @@
     position: relative;
     left: 90px;
 
+}
+
+.login_block {
+    width: 200px;
+    position: relative;
+    right: 50px;
+    display: flex;
+}
+
+.login_block a {
+    color: whitesmoke;
+    text-decoration: none;
+    position: relative;
+    top: 10px;
+    left: 80px;
+}
+
+.login_block img {
+    width: 45px;
+    height: 45px;
+    border-radius: 100px;
 }

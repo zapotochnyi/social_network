@@ -1,30 +1,61 @@
 import React from 'react';
 import {connect} from "react-redux";
-import Users from "./Users";
-import {followAC, setUsersAC, unfollowAC} from "../../redux/usersReducer";
+import {
+    followUser,
+    getUsers,
+    setCurrentPage,
+    toggleButtonDisable,
+    unfollowUser
+} from "../../redux/usersReducer";
+import UsersPage from "./UsersPage/UsersPage";
+import Preloader from "../common/Preloader/Preloader";
+
+class UsersContainer extends React.Component {
+
+    componentDidMount() {
+
+        this.props.getUsers(this.props.pageSize, this.props.currentPage);
+    }
+
+    onPageChanged = (currentPage) => {
+
+        this.props.setCurrentPage(currentPage);
+        this.props.getUsers(this.props.pageSize, currentPage);
+    }
+
+    render() {
+
+        return <>
+            {
+                this.props.isFetching ? <Preloader/> : <UsersPage users={this.props.users}
+                                                                  totalUsersCount={this.props.totalUsersCount}
+                                                                  pageSize={this.props.pageSize}
+                                                                  currentPage={this.props.currentPage}
+                                                                  followUser={this.props.followUser}
+                                                                  unfollowUser={this.props.unfollowUser}
+                                                                  onPageChanged={this.onPageChanged}
+                                                                  buttonDisableInProgress={this.props.buttonDisableInProgress}
+                />
+            }
+        </>
+    }
+}
 
 const mapStateToProps = (state) => {
     return {
-        users: state.usersPage.users
+        users: state.usersPage.users,
+        pageSize: state.usersPage.pageSize,
+        totalUsersCount: state.usersPage.totalUsersCount,
+        currentPage: state.usersPage.currentPage,
+        isFetching: state.usersPage.isFetching,
+        buttonDisableInProgress: state.usersPage.buttonDisableInProgress
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        followUser: (userId) => {
-            dispatch(followAC(userId));
-        },
-
-        unfollowUser: (userId) => {
-            dispatch(unfollowAC(userId));
-        },
-
-        setUsers: (users) => {
-            dispatch(setUsersAC(users));
-        }
-    }
-}
-
-const UsersContainer = connect(mapStateToProps, mapDispatchToProps) (Users);
-
-export default UsersContainer;
+export default connect(mapStateToProps, {
+    setCurrentPage,
+    toggleButtonDisable,
+    getUsers,
+    followUser,
+    unfollowUser
+})(UsersContainer);
