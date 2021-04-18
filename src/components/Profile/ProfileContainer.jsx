@@ -3,7 +3,9 @@ import {addPost, getProfile, newPostText, setUserProfile} from "../../redux/prof
 import {connect} from "react-redux";
 import Profile from "./Profile";
 import Preloader from "../common/Preloader/Preloader";
-import {Redirect, withRouter} from "react-router-dom";
+import {withRouter} from "react-router-dom";
+import withAuthRedirect from "../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 class ProfileContainer extends React.Component {
 
@@ -16,7 +18,6 @@ class ProfileContainer extends React.Component {
     render() {
 //todo preloader for all request
 
-        if (!this.props.isAuth) return <Redirect to='/login'/>
         return <>
             {!this.props.profile.profileInfo ? <Preloader/> :
                 <Profile {...this.props} profileInfo={this.props.profile.profileInfo}/>}
@@ -29,10 +30,11 @@ class ProfileContainer extends React.Component {
 const mapStateToProps = (state) => {
     return {
         profile: state.profile,
-        isAuth: state.auth.isAuth
     }
 }
 
-const WithRouterProfileContainer = withRouter(ProfileContainer);
-
-export default connect(mapStateToProps, {addPost, newPostText, setUserProfile, getProfile})(WithRouterProfileContainer);
+export default compose(
+    connect(mapStateToProps, {addPost, newPostText, setUserProfile, getProfile}),
+    withRouter,
+    withAuthRedirect
+)(ProfileContainer);
