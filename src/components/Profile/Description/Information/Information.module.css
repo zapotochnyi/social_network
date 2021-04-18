@@ -1,0 +1,14 @@
+.information {
+    margin-left: 30px;
+}
+
+.information :first-child{
+    margin-bottom: 25px;
+    color: rgb(26, 22, 22);
+}
+
+.item{
+    color: rgb(26, 22, 22);
+    font-size: large;
+    margin-bottom: 15px;
+}

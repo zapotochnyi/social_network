@@ -1,0 +1,30 @@
+.friends_bar{
+    /*border: 1px solid grey;*/
+}
+
+.friends_link {
+    box-sizing: border-box;
+    font-size: xx-large;
+    padding-left: 5px;
+    margin-bottom: 10px;
+}
+
+.friends_link a{
+    color: #f8f2f2;
+    text-decoration: none;
+}
+
+.friends_link a.active{
+    border-bottom: 2px solid #ffd500;
+}
+
+.friends_wrapper{
+    display: flex;
+    justify-content: space-around;
+    border: 1px solid grey;
+    box-sizing: border-box;
+    padding: 5px;
+    background: slategrey;
+    border-radius: 1em;
+}
+

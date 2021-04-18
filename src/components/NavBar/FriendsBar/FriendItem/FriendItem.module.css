@@ -1,0 +1,15 @@
+.friend_item{
+    box-sizing: border-box;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+.friend_item h5{
+    text-align: center;
+    color: whitesmoke;
+}
+
+.friend_item img{
+    width: 50px;
+    border-radius: 100%;
+}

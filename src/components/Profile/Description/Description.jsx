@@ -1,21 +1,42 @@
 import React from 'react';
-import c from './Description.module.css';
+import s from './Description.module.css';
+import DefaultUserImg from "../../common/DefaultUserImg/DefaultUserImg";
 
-const Description = () =>{
-    return(
-        <div className={c.description}>
-            <div className={c.avatar}>
-                <img
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6-OX8ltKbi4MdCQa9BeV8l_36Z76lF4Qjeg&usqp=CAU"
-                    alt=""/>
+const Description = (props) => {
+    return (
+        <div className={s.description}>
+
+            <div className={s.avatar}>
+                {props.profileInfo.photos.large ? <img src={props.profileInfo.photos.large}/> : <DefaultUserImg/>}
             </div>
-            <div className={c.information}>
-                <h2>Backa Kartoflyanuy</h2>
-                <p className={c.item}>Date of birth: 15.05.1999</p>
-                <p className={c.item}>City: Tokyo</p>
-                <p className={c.item}>Education: LNU</p>
-                <p className={c.item}>Web Site: @elina</p>
+
+            <div className={s.information}>
+                <h2>{props.profileInfo.fullName}</h2>
+
+                <div className={s.item}>{props.profileInfo.aboutMe}</div>
+
+                <div className={s.item}>{props.profileInfo.lookingForAJob ?
+                    <span>{props.profileInfo.lookingForAJobDescription}</span> : null}
+                </div>
+
+                <div className={s.item}>{props.profileInfo.contacts.facebook ?
+                    <a href={props.profileInfo.contacts.facebook} target="_blank">facebook,{' '}</a> : null}
+
+                    {props.profileInfo.contacts.vk ?
+                        <a href={props.profileInfo.contacts.vk} target="_blank">vk,{' '}</a> : null}
+
+                    {props.profileInfo.contacts.twitter ?
+                        <a href={props.profileInfo.contacts.twitter} target="_blank">twitter,{' '}</a> : null}
+
+                    {props.profileInfo.contacts.instagram ?
+                        <a href={props.profileInfo.contacts.instagram} target="_blank">instagram,{' '}</a> : null}
+
+                    {props.profileInfo.contacts.github ?
+                        <a href={props.profileInfo.contacts.github} target="_blank">github</a> : null}
+                </div>
+
             </div>
+
         </div>
     )
 }

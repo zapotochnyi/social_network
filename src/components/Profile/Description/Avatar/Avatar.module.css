@@ -1,0 +1,10 @@
+.avatar {
+    height: 202px;
+}
+
+.avatar :first-child{
+    width: 200px;
+    height: 200px;
+    border: 1px solid darkslategrey;
+    border-radius: 10px;
+}

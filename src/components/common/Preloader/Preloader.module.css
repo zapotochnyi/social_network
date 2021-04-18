@@ -1,0 +1,9 @@
+.preloader_wrap{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.preloader_wrap img{
+    width: 500px;
+}

@@ -1,15 +1,16 @@
 import React from 'react';
-import c from './Profile.module.css';
-import MyPosts from "./MyPosts/MyPosts";
+import s from "./Profile.module.css";
 import MainImage from "./MainImage/MainImage";
 import Description from "./Description/Description";
+import MyPosts from "./MyPosts/MyPosts";
 
-const Profile = () => {
+const Profile = (props) => {
     return (
-        <div className={c.profile}>
+        <div className={s.profile_wrapper}>
             <MainImage/>
-            <Description/>
-            <MyPosts/>
+            <Description profileInfo={props.profileInfo}/>
+            <MyPosts profile={props.profile} addPost={props.addPost}
+                     newPostText={props.newPostText}/>
         </div>
     )
 }

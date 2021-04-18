@@ -3,15 +3,18 @@ import c from './MyPosts.module.css';
 import Post from "./Post/Post";
 import NewPost from "./New Post/NewPost";
 
-const MyPosts = () => {
+const MyPosts = (props) => {
+    let postElement = props.profile.posts.map(p => (
+        <Post avatar={p.avatar} name={p.name} text={p.text} quantity_likes={p.quantity_likes} quantity_reposts={p.quantity_reposts}/>))
+
     return (
         <div className={c.posts}>
-            <NewPost/>
-            <Post text='Пока не узнаю, сколько %, спать не пойду. Волнуюсь же' quantity_likes='108' quantity_reposts='25'/>
-            <Post text='С юбилеем Великой Победы вас! Не забудьте, в 22.00 праздничный салют' quantity_likes='584' quantity_reposts='56'/>
-            <Post text='Порошенко напоминает мне картошку: либо осенью уберут, либо зимой замёрзнет'quantity_likes='497' quantity_reposts='14'/>
+            <NewPost newPostValue={props.profile.newPostValue} addPost={props.addPost}
+                     newPostText={props.newPostText} />
+            {postElement}
         </div>
     )
 }
 
 export default MyPosts;
+

@@ -1,10 +1,23 @@
 import React from 'react';
-import c from './Header.module.css';
+import s from './Header.module.css';
+import logo from '../../assets/images/Logo.png'
+import {NavLink} from "react-router-dom";
+import defaultUserPhoto from '../../assets/images/default-user-image.png'
 
-const Header = () => {
+const Header = (props) => {
     return (
-        <header className={c.header}>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Android_O_Preview_Logo.png" alt="logo"/>
+        <header className={s.header}>
+            <img src={logo}/>
+
+            <div className={s.login_block}>
+                {props.isAuth ?
+                    <NavLink to={`/profile/${props.id}`}>{props.login}</NavLink> :
+                    <NavLink to={'/login'}>Login</NavLink>}
+
+                {props.isAuth ?
+                    <img src={props.photo != null ? props.photo : defaultUserPhoto}/> : null}
+
+            </div>
         </header>
     )
 }
