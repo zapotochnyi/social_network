@@ -23,8 +23,12 @@
 }
 
 .information h2 {
-    margin-bottom: 15px;
     color: rgb(26, 22, 22);
+}
+
+.name_status{
+    margin-bottom: 15px;
+    border-bottom: 1px solid grey;
 }
 
 .item {

@@ -1,4 +1,4 @@
-import {profileAPI} from "../api/api";
+import {headerAPI, profileAPI} from "../api/api";
 
 const UPDATE_NEW_POST_VALUE = 'UPDATE-NEW-POST-VALUE';
 const ADD_POST = 'ADD-POST';
@@ -77,7 +77,7 @@ export const setUserProfile = (profileInfo) => ({type: SET_USER_PROFILE, profile
 export const getProfile = (userId) => {
     return (dispatch) => {
         if (!userId) {
-            userId = 2;
+           userId = 2;
         }
         profileAPI.getProfile(userId)
             .then(data => {

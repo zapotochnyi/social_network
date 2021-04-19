@@ -1,6 +1,7 @@
 import React from 'react';
 import s from './Description.module.css';
 import DefaultUserImg from "../../common/DefaultUserImg/DefaultUserImg";
+import ProfileStatus from "./ProfileStatus/ProfileStatus";
 
 const Description = (props) => {
     return (
@@ -11,7 +12,11 @@ const Description = (props) => {
             </div>
 
             <div className={s.information}>
-                <h2>{props.profileInfo.fullName}</h2>
+                <div className={s.name_status}>
+                    <h2>{props.profileInfo.fullName}</h2>
+                    <ProfileStatus status={'hello, i am fine'} />
+                </div>
+
 
                 <div className={s.item}>{props.profileInfo.aboutMe}</div>
 
