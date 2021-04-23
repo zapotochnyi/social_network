@@ -5,6 +5,7 @@ import {headerAPI, profileAPI} from "../api/api";
 const UPDATE_NEW_POST_VALUE = 'UPDATE-NEW-POST-VALUE';
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
+const SET_USER_STATUS = 'SET_USER_STATUS';
 
 let initialState = {
 
@@ -34,7 +35,8 @@ let initialState = {
         },
     ],
 
-    profileInfo: null
+    profileInfo: null,
+    status: ''
 }
 
 const profileReducer = (state = initialState, action) => {
@@ -65,6 +67,10 @@ const profileReducer = (state = initialState, action) => {
             return {...state, profileInfo: action.profileInfo}
         }
 
+        case SET_USER_STATUS: {
+            return {...state, status: action.status}
+        }
+
         default:
             return state;
 
@@ -72,9 +78,10 @@ const profileReducer = (state = initialState, action) => {
 
 }
 
-export const newPostText = (text) => ({type: UPDATE_NEW_POST_VALUE, newText: text})
-export const addPost = () => ({type: ADD_POST})
-export const setUserProfile = (profileInfo) => ({type: SET_USER_PROFILE, profileInfo})
+export const newPostText = (text) => ({type: UPDATE_NEW_POST_VALUE, newText: text});
+export const addPost = () => ({type: ADD_POST});
+export const setUserProfile = (profileInfo) => ({type: SET_USER_PROFILE, profileInfo});
+export const setUserStatus = (status) => ({type: SET_USER_STATUS, status});
 
 export const getProfile = (userId) => {
     return (dispatch) => {
@@ -84,6 +91,26 @@ export const getProfile = (userId) => {
         profileAPI.getProfile(userId)
             .then(data => {
                 dispatch(setUserProfile(data));
+            })
+    }
+}
+
+export const getUserStatus = (userId) => {
+    return (dispatch) => {
+        profileAPI.getStatus(userId)
+            .then(data => {
+                dispatch(setUserStatus(data));
+            })
+    }
+}
+
+export const updateUserStatus = (status) => {
+    return (dispatch) => {
+        profileAPI.updateStatus(status)
+            .then(data => {
+                if(data.resultCode === 0) {
+                    dispatch(setUserStatus(status));    
+                }  
             })
     }
 }
