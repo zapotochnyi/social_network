@@ -1,5 +1,7 @@
 import {headerAPI, profileAPI} from "../api/api";
 
+//todo status state and reducer
+
 const UPDATE_NEW_POST_VALUE = 'UPDATE-NEW-POST-VALUE';
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
