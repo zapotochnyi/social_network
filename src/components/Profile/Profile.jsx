@@ -8,7 +8,7 @@ const Profile = (props) => {
     return (
         <div className={s.profile_wrapper}>
             <MainImage/>
-            <Description profileInfo={props.profileInfo}/>
+            <Description profileInfo={props.profileInfo} status={props.status}/>
             <MyPosts profile={props.profile} addPost={props.addPost}
                      newPostText={props.newPostText}/>
         </div>

@@ -14,7 +14,7 @@ const Description = (props) => {
             <div className={s.information}>
                 <div className={s.name_status}>
                     <h2>{props.profileInfo.fullName}</h2>
-                    <ProfileStatus status={'hello, i am fine'} />
+                    <ProfileStatus status={props.status} />
                 </div>
 
 

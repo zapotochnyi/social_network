@@ -1,7 +1,5 @@
 import {headerAPI, profileAPI} from "../api/api";
 
-//todo status state and reducer
-
 const UPDATE_NEW_POST_VALUE = 'UPDATE-NEW-POST-VALUE';
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
@@ -83,36 +81,30 @@ export const addPost = () => ({type: ADD_POST});
 export const setUserProfile = (profileInfo) => ({type: SET_USER_PROFILE, profileInfo});
 export const setUserStatus = (status) => ({type: SET_USER_STATUS, status});
 
-export const getProfile = (userId) => {
-    return (dispatch) => {
-        if (!userId) {
-           userId = 2;
-        }
-        profileAPI.getProfile(userId)
-            .then(data => {
-                dispatch(setUserProfile(data));
-            })
+export const getProfile = (userId) => (dispatch) => {
+    if (!userId) {
+        userId = 2;
     }
+    profileAPI.getProfile(userId)
+        .then(data => {
+            dispatch(setUserProfile(data));
+        })
 }
 
-export const getUserStatus = (userId) => {
-    return (dispatch) => {
+export const getUserStatus = (userId) => (dispatch) => {
         profileAPI.getStatus(userId)
             .then(data => {
                 dispatch(setUserStatus(data));
             })
-    }
 }
 
-export const updateUserStatus = (status) => {
-    return (dispatch) => {
+export const updateUserStatus = (status) => (dispatch) => {
         profileAPI.updateStatus(status)
             .then(data => {
-                if(data.resultCode === 0) {
-                    dispatch(setUserStatus(status));    
-                }  
+                if (data.resultCode === 0) {
+                    dispatch(setUserStatus(status));
+                }
             })
-    }
 }
 
 export default profileReducer;
