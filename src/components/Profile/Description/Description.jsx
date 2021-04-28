@@ -2,6 +2,7 @@ import React from 'react';
 import s from './Description.module.css';
 import DefaultUserImg from "../../common/DefaultUserImg/DefaultUserImg";
 import ProfileStatus from "./ProfileStatus/ProfileStatus";
+import {updateUserStatus} from "../../../redux/profileReducer";
 
 const Description = (props) => {
     return (
@@ -14,7 +15,7 @@ const Description = (props) => {
             <div className={s.information}>
                 <div className={s.name_status}>
                     <h2>{props.profileInfo.fullName}</h2>
-                    <ProfileStatus status={props.status} />
+                    <ProfileStatus status={props.status} updateUserStatus={props.updateUserStatus}/>
                 </div>
 
 

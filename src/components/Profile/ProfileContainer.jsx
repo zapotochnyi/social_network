@@ -17,9 +17,8 @@ import {compose} from "redux";
 class ProfileContainer extends React.Component {
 
     componentDidMount() {
-        //todo what a fuck with userId and withRouter
-        debugger
         let userId = this.props.match.params.userId;
+        if (!userId) userId = 15786;
         this.props.getProfile(userId);
         this.props.getUserStatus(userId);
     }
@@ -28,7 +27,7 @@ class ProfileContainer extends React.Component {
         return <>
             {!this.props.profile.profileInfo ? <Preloader/> :
                 <Profile {...this.props} profileInfo={this.props.profile.profileInfo}
-                         status={this.props.profile.status}/>}
+                         status={this.props.profile.status} updateUserStatus={this.props.updateUserStatus}/>}
         </>
     }
 }
