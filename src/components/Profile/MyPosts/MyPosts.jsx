@@ -9,8 +9,7 @@ const MyPosts = (props) => {
 
     return (
         <div className={c.posts}>
-            <NewPost newPostValue={props.profile.newPostValue} addPost={props.addPost}
-                     newPostText={props.newPostText} />
+            <NewPost addPost={props.addPost}/>
             {postElement}
         </div>
     )

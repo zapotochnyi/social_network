@@ -1,0 +1,26 @@
+.new_post {
+    margin: 0;
+}
+
+.textarea{
+    background-color: rgba(219, 211, 211, 0.91);
+    box-sizing: border-box;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 1em;
+    border: 1px solid grey;
+}
+
+
+.publish_btn{
+    width: 70px;
+    background-color: darkslategrey;
+    color: #f8f2f2;
+    position: relative;
+    left: 87%;
+    text-align: center;
+    cursor: pointer;
+    box-sizing: border-box;
+    padding: 5px;
+    border-radius: 1em;
+}

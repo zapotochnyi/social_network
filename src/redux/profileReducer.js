@@ -7,8 +7,6 @@ const SET_USER_STATUS = 'SET_USER_STATUS';
 
 let initialState = {
 
-    newPostValue: '',
-
     posts: [
         {
             id: 1,
@@ -40,16 +38,10 @@ let initialState = {
 const profileReducer = (state = initialState, action) => {
 
     switch (action.type) {
-        case UPDATE_NEW_POST_VALUE:
-            return {
-                ...state,
-                newPostValue: action.newText
-            }
-
         case ADD_POST:
             let newPost = {
                 id: 4,
-                text: state.newPostValue,
+                text: action.newPostText,
                 quantity_likes: 0,
                 quantity_reposts: 0,
                 avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6-OX8ltKbi4MdCQa9BeV8l_36Z76lF4Qjeg&usqp=CAU'
@@ -76,8 +68,7 @@ const profileReducer = (state = initialState, action) => {
 
 }
 
-export const newPostText = (text) => ({type: UPDATE_NEW_POST_VALUE, newText: text});
-export const addPost = () => ({type: ADD_POST});
+export const addPost = (newPostText) => ({type: ADD_POST, newPostText});
 export const setUserProfile = (profileInfo) => ({type: SET_USER_PROFILE, profileInfo});
 export const setUserStatus = (status) => ({type: SET_USER_STATUS, status});
 

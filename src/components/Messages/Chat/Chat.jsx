@@ -1,16 +1,21 @@
 import React from 'react';
 import c from './Chat.module.css'
 import MessageIn from "./MessageIn/MessageIn";
-import Input from "./Input/Input";
 import MessageOut from "./MessageOut/MessageOut";
-import JobStatusIcon from "../../common/JobStatusIcon/JobStatusIcon";
+import {reduxForm} from "redux-form";
+import SendMessageForm from "./SendMessageForm/SendMessageForm";
 
+let SendMessageReduxForm = reduxForm({form: 'sendMessageForm'})(SendMessageForm)
 
 const Chat = (props) => {
 
     let messageInElement = props.messages.messagesIn.map(m => (<MessageIn idIn={m.idIn} textIn={m.textIn}/>))
 
     let messageOutElement = props.messages.messagesOut.map(m => (<MessageOut idOut={m.idOut} textOut={m.textOut}/>));
+
+    let onSubmit = (formData) => {
+        props.addMessage(formData.newMessageText);
+    }
 
     return (
         <div className={c.chat}>
@@ -24,8 +29,7 @@ const Chat = (props) => {
                     {messageOutElement}
                 </div>
             </div>
-            <Input newMessageValue={props.messages.newMessageValue} addMessage={props.addMessage}
-                   newMessageText={props.newMessageText}/>
+            <SendMessageReduxForm onSubmit={onSubmit}/>
         </div>
     )
 

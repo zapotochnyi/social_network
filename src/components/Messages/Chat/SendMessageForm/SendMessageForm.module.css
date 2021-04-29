@@ -3,7 +3,7 @@
     display: flex;
 }
 
-.input_wrap input {
+.message_form {
     box-sizing: border-box;
     background-color: rgba(219, 211, 211, 0.91);
     width: 100%;

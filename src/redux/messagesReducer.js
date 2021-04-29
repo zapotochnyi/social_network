@@ -42,8 +42,6 @@ let initialState = {
 
     ],
 
-    newMessageValue: '',
-
     messagesOut: [
         {idOut: 1, textOut: 'Okay, lets go!'},
         {idOut: 2, textOut: 'YEEE,BOOOZEE!!'},
@@ -54,20 +52,14 @@ let initialState = {
 const messagesReducer = (state = initialState, action) => {
 
     switch (action.type) {
-        case UPDATE_NEW_MESSAGE_VALUE:
-            return {
-                ...state,
-                newMessageValue: action.newText
-            }
 
         case SEND_MESSAGE:
             let newMessage = {
                 idOut: 3,
-                textOut: state.newMessageValue
+                textOut: action.newMessageText
             }
             return {
                 ...state,
-                newMessageValue: '',
                 messagesOut: [...state.messagesOut, newMessage]
             }
 
@@ -77,8 +69,6 @@ const messagesReducer = (state = initialState, action) => {
 
 }
 
-export const newMessageText = (text) => ({type: UPDATE_NEW_MESSAGE_VALUE, newText: text})
-
-export const addMessage = () => ({type: SEND_MESSAGE})
+export const addMessage = (newMessageText) => ({type: SEND_MESSAGE, newMessageText})
 
 export default messagesReducer;
