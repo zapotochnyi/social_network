@@ -5,7 +5,7 @@ import MessageOut from "./MessageOut/MessageOut";
 import {reduxForm} from "redux-form";
 import SendMessageForm from "./SendMessageForm/SendMessageForm";
 
-let SendMessageReduxForm = reduxForm({form: 'sendMessageForm'})(SendMessageForm)
+const SendMessageReduxForm = reduxForm({form: 'sendMessageForm'})(SendMessageForm)
 
 const Chat = (props) => {
 
@@ -13,7 +13,7 @@ const Chat = (props) => {
 
     let messageOutElement = props.messages.messagesOut.map(m => (<MessageOut idOut={m.idOut} textOut={m.textOut}/>));
 
-    let onSubmit = (formData) => {
+    let onSendMessage = (formData) => {
         props.addMessage(formData.newMessageText);
     }
 
@@ -29,7 +29,7 @@ const Chat = (props) => {
                     {messageOutElement}
                 </div>
             </div>
-            <SendMessageReduxForm onSubmit={onSubmit}/>
+            <SendMessageReduxForm onSubmit={onSendMessage}/>
         </div>
     )
 

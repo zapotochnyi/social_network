@@ -1,4 +1,3 @@
-const UPDATE_NEW_MESSAGE_VALUE = 'UPDATE-NEW-MESSAGE-VALUE';
 const SEND_MESSAGE = 'SEND-MESSAGE';
 
 let initialState = {

@@ -7,7 +7,7 @@ const NewPostReduxForm = reduxForm({form:'newPost'})(NewPostForm);
 
 const NewPost = (props) => {
 
-    let onSubmit = (formData) => {
+    let onAddPost = (formData) => {
         props.addPost(formData.newPostText);
         formData.newPostText = '';
     }
@@ -17,7 +17,7 @@ const NewPost = (props) => {
             <h2 className={c.header}>
                 My posts
             </h2>
-            <NewPostReduxForm onSubmit={onSubmit}/>
+            <NewPostReduxForm onSubmit={onAddPost}/>
         </div>
     )
 }

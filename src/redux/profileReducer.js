@@ -1,6 +1,5 @@
-import {headerAPI, profileAPI} from "../api/api";
+import {profileAPI} from "../api/api";
 
-const UPDATE_NEW_POST_VALUE = 'UPDATE-NEW-POST-VALUE';
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_USER_STATUS = 'SET_USER_STATUS';

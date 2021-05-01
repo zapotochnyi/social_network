@@ -3,7 +3,6 @@ import {
     addPost,
     getProfile,
     getUserStatus,
-    newPostText,
     setUserProfile,
     updateUserStatus
 } from "../../redux/profileReducer";
