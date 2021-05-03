@@ -36,3 +36,12 @@
     height: 45px;
     border-radius: 100px;
 }
+
+.user_name {
+    display: flex;
+}
+
+.user_name span {
+    cursor: pointer;
+    color: whitesmoke;
+}

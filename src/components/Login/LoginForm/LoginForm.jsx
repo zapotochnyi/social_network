@@ -3,17 +3,17 @@ import {Field} from "redux-form";
 import {Input} from "../../common/FormControls/FormControls";
 import {maxLengthCreator, minLengthCreator, required} from "../../../utils/validators/validators";
 
-const maxLength15 = maxLengthCreator(15);
 const minLength8 = minLengthCreator(8);
 
 const LoginForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field component={Input} name={'login'} placeholder={'Login'} validate={[required, maxLength15]}/>
+                <Field component={Input} name={'email'} placeholder={'Email'} validate={[required]}/>
             </div>
             <div>
-                <Field component={Input} name={'password'} placeholder={'Password'} validate={[required, minLength8]}/>
+                <Field component={Input} type={'password'} name={'password'} placeholder={'Password'}
+                       validate={[required, minLength8]}/>
             </div>
             <div>
                 <Field component={Input} type={'checkbox'} name={'rememberMe'}/>Remember Me

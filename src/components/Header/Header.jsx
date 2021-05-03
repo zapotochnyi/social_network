@@ -11,11 +11,14 @@ const Header = (props) => {
 
             <div className={s.login_block}>
                 {props.isAuth ?
-                    <NavLink to={`/profile/${props.id}`}>{props.login}</NavLink> :
-                    <NavLink to={'/login'}>Login</NavLink>}
 
-                {props.isAuth ?
-                    <img src={props.photo != null ? props.photo : defaultUserPhoto}/> : null}
+                    <div className={s.user_name}>
+                        <NavLink to={`/profile/${props.id}`}>{props.login}</NavLink>
+                        <img src={props.photo != null ? props.photo : defaultUserPhoto}/>
+                        <span onClick={props.logout}>Logout</span>
+                    </div> :
+
+                    <NavLink to={'/login'}>Login</NavLink>}
 
             </div>
         </header>

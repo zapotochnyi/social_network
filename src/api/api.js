@@ -56,7 +56,7 @@ export const profileAPI = {
     }
 }
 
-export const headerAPI = {
+export const authAPI = {
 
     getAuthUserData() {
         return instance.get('auth/me')
@@ -70,6 +70,20 @@ export const headerAPI = {
             .then(responce => {
                 return responce.data;
             })
-    }
+    },
+
+    login(email, password, rememberMe = false) {
+        return instance.post('auth/login', {email, password, rememberMe})
+            .then(responce => {
+                return responce.data;
+            })
+    },
+
+    logout() {
+        return instance.delete('auth/login')
+            .then(responce => {
+                return responce.data;
+            })
+    },
 }
 
