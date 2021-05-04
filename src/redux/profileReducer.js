@@ -73,22 +73,22 @@ export const setUserStatus = (status) => ({type: SET_USER_STATUS, status});
 
 export const getProfile = (userId) => (dispatch) => {
     profileAPI.getProfile(userId)
-        .then(data => {
-            dispatch(setUserProfile(data));
+        .then(responce => {
+            dispatch(setUserProfile(responce.data));
         })
 }
 
 export const getUserStatus = (userId) => (dispatch) => {
         profileAPI.getStatus(userId)
-            .then(data => {
-                dispatch(setUserStatus(data));
+            .then(responce => {
+                dispatch(setUserStatus(responce.data));
             })
 }
 
 export const updateUserStatus = (status) => (dispatch) => {
         profileAPI.updateStatus(status)
-            .then(data => {
-                if (data.resultCode === 0) {
+            .then(responce => {
+                if (responce.data.resultCode === 0) {
                     dispatch(setUserStatus(status));
                 }
             })

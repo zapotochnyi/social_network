@@ -1,4 +1,5 @@
 import {authAPI} from "../api/api";
+import {stopSubmit} from "redux-form";
 
 const SET_AUTH_USER_DATA = 'SET_AUTH_USER_DATA';
 const SET_USER_PHOTO = 'SET_USER_PHOTO';
@@ -32,41 +33,48 @@ const authReducer = (state = initialState, action) => {
 
 }
 
-export const setAuthUserData = (id, email, login, isAuth) => ({type: SET_AUTH_USER_DATA, payload: {id, email, login, isAuth}});
+export const setAuthUserData = (id, email, login, isAuth) => ({
+    type: SET_AUTH_USER_DATA,
+    payload: {id, email, login, isAuth}
+});
 export const setUserPhoto = (photo) => ({type: SET_USER_PHOTO, photo});
 
 export const getAuthUserData = () => (dispatch) => {
-        authAPI.getAuthUserData()
-            .then(data => {
-                if (data.resultCode === 0) {
-                    let {id, email, login} = data.data;
-                    dispatch(setAuthUserData(id, email, login, true));
-                }
-            })
+    authAPI.getAuthUserData()
+        .then(responce => {
+            if (responce.data.resultCode === 0) {
+                let {id, email, login} = responce.data.data;
+                dispatch(setAuthUserData(id, email, login, true));
+            }
+        })
 }
 export const setAuthUserPhoto = (id) => (dispatch) => {
-        authAPI.setAuthUserPhoto(id)
-            .then(data => {
-                if (data.resultCode ===0) {
-                    dispatch(setUserPhoto(data.photos.small));
-                }
-            })
+    authAPI.setAuthUserPhoto(id)
+        .then(responce => {
+            if (responce.data.resultCode === 0) {
+                dispatch(setUserPhoto(responce.data.photos.small));
+            }
+        })
 }
 export const login = (email, password, rememberMe) => (dispatch) => {
-        authAPI.login(email, password, rememberMe)
-            .then(data => {
-                if (data.resultCode === 0) {
-                    dispatch(getAuthUserData());
-                }
-            })
+    authAPI.login(email, password, rememberMe)
+        .then(responce => {
+            if (responce.data.resultCode === 0) {
+                dispatch(getAuthUserData());
+            } else {
+                let errorMessage = responce.data.messages.length > 0 ? responce.data.messages : 'Undefined error';
+                let action = stopSubmit('login', {_error: errorMessage});
+                dispatch(action);
+            }
+        })
 }
 export const logout = () => (dispatch) => {
-        authAPI.logout()
-            .then(data => {
-                if (data.resultCode === 0) {
-                    dispatch(setAuthUserData(null, null, null, false));
-                }
-            })
+    authAPI.logout()
+        .then(responce => {
+            if (responce.data.resultCode === 0) {
+                dispatch(setAuthUserData(null, null, null, false));
+            }
+        })
 }
 
 

@@ -11,79 +11,49 @@ const instance = axios.create({
 export const usersAPI = {
 
     getUsers(pageSize, currentPage) {
-        return instance.get(`users?count=${pageSize}&page=${currentPage}`)
-            .then(responce => {
-                return responce.data;
-            })
+        return instance.get(`users?count=${pageSize}&page=${currentPage}`);
     },
 
     followUser(id) {
-        return instance.post(`follow/${id}`)
-            .then(responce => {
-                return responce.data;
-            })
+        return instance.post(`follow/${id}`);
     },
 
     unfollowUser(id) {
-        return instance.delete(`follow/${id}`)
-            .then(responce => {
-                return responce.data;
-            })
+        return instance.delete(`follow/${id}`);
     }
 }
 
 export const profileAPI = {
 
     getProfile(userId) {
-        return instance.get('profile/' + userId)
-            .then(responce => {
-                return responce.data;
-            })
+        return instance.get('profile/' + userId);
     },
 
     getStatus(userId) {
-        return instance.get('profile/status/' + userId)
-            .then(responce => {
-                return responce.data;
-            })
+        return instance.get('profile/status/' + userId);
     },
 
     updateStatus(status) {
-        return instance.put('profile/status', {status: status})
-            .then(responce => {
-                return responce.data;
-            })
+        return instance.put('profile/status', {status: status});
     }
 }
 
 export const authAPI = {
 
     getAuthUserData() {
-        return instance.get('auth/me')
-            .then(responce => {
-                return responce.data;
-            })
+        return instance.get('auth/me');
     },
 
     setAuthUserPhoto(id) {
-        return instance.get('profile/' + id)
-            .then(responce => {
-                return responce.data;
-            })
+        return instance.get('profile/' + id);
     },
 
     login(email, password, rememberMe = false) {
-        return instance.post('auth/login', {email, password, rememberMe})
-            .then(responce => {
-                return responce.data;
-            })
+        return instance.post('auth/login', {email, password, rememberMe});
     },
 
     logout() {
-        return instance.delete('auth/login')
-            .then(responce => {
-                return responce.data;
-            })
+        return instance.delete('auth/login');
     },
 }
 

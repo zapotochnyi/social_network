@@ -83,10 +83,10 @@ export const getUsers = (pageSize, currentPage) => {
         dispatch(toggleIsFetching(true));
 
         usersAPI.getUsers(pageSize, currentPage)
-            .then(data => {
+            .then(responce => {
                 dispatch(toggleIsFetching(false));
-                dispatch(setUsers(data.items));
-                dispatch(setTotalUsersCount(data.totalCount));
+                dispatch(setUsers(responce.data.items));
+                dispatch(setTotalUsersCount(responce.data.totalCount));
             });
     }
 }
@@ -94,8 +94,8 @@ export const followUser = (id) => {
     return (dispatch) => {
         dispatch(toggleButtonDisable(true, id));
         usersAPI.followUser(id)
-            .then(data => {
-                if (data.resultCode === 0) {
+            .then(responce => {
+                if (responce.data.resultCode === 0) {
                     dispatch(followUserSuccess(id));
                     dispatch(toggleButtonDisable(false, id));
                 }
@@ -106,8 +106,8 @@ export const unfollowUser = (id) => {
     return (dispatch) => {
         dispatch(toggleButtonDisable(true, id));
         usersAPI.unfollowUser(id)
-            .then(data => {
-                if (data.resultCode === 0) {
+            .then(responce => {
+                if (responce.data.resultCode === 0) {
                     dispatch(unfollowUserSuccess(id));
                     dispatch(toggleButtonDisable(false, id));
                 }
