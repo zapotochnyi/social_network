@@ -34,7 +34,7 @@ let initialState = {
     status: ''
 }
 
-const profileReducer = (state = initialState, action) => {
+const profileReducer = (state = initialState, action: any) => {
 
     switch (action.type) {
         case ADD_POST:
@@ -67,25 +67,25 @@ const profileReducer = (state = initialState, action) => {
 
 }
 
-export const addPost = (newPostText) => ({type: ADD_POST, newPostText});
-export const setUserProfile = (profileInfo) => ({type: SET_USER_PROFILE, profileInfo});
-export const setUserStatus = (status) => ({type: SET_USER_STATUS, status});
+export const addPost = (newPostText: string) => ({type: typeof ADD_POST, newPostText});
+export const setUserProfile = (profileInfo: Array<string>) => ({type: typeof SET_USER_PROFILE, profileInfo});
+export const setUserStatus = (status: string) => ({type: typeof SET_USER_STATUS, status});
 
-export const getProfile = (userId) => (dispatch) => {
+export const getProfile = (userId: number) => (dispatch: Function) => {
     profileAPI.getProfile(userId)
         .then(responce => {
             dispatch(setUserProfile(responce.data));
         })
 }
 
-export const getUserStatus = (userId) => (dispatch) => {
+export const getUserStatus = (userId: number) => (dispatch: Function) => {
         profileAPI.getStatus(userId)
             .then(responce => {
                 dispatch(setUserStatus(responce.data));
             })
 }
 
-export const updateUserStatus = (status) => (dispatch) => {
+export const updateUserStatus = (status: string) => (dispatch: Function) => {
         profileAPI.updateStatus(status)
             .then(responce => {
                 if (responce.data.resultCode === 0) {
