@@ -4,7 +4,37 @@ const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_USER_STATUS = 'SET_USER_STATUS';
 
-let initialState = {
+type PostsType = [
+    {
+        id: number
+        text: string
+        quantity_likes: number
+        quantity_reposts: number
+        avatar: string
+    },
+    {
+        id: number
+        text: string
+        quantity_likes: number
+        quantity_reposts: number
+        avatar: string
+    },
+    {
+        id: number
+        text: string
+        quantity_likes: number
+        quantity_reposts: number
+        avatar: string
+    },
+]
+
+export type InitialStateType = {
+    posts: PostsType,
+    profileInfo: Object | null,
+    status: string
+}
+
+let initialState: InitialStateType = {
 
     posts: [
         {
@@ -67,9 +97,9 @@ const profileReducer = (state = initialState, action: any) => {
 
 }
 
-export const addPost = (newPostText: string) => ({type: typeof ADD_POST, newPostText});
-export const setUserProfile = (profileInfo: Array<string>) => ({type: typeof SET_USER_PROFILE, profileInfo});
-export const setUserStatus = (status: string) => ({type: typeof SET_USER_STATUS, status});
+export const addPost = (newPostText: string) => ({type: ADD_POST, newPostText});
+export const setUserProfile = (profileInfo: Object) => ({type: SET_USER_PROFILE, profileInfo});
+export const setUserStatus = (status: string) => ({type: SET_USER_STATUS, status});
 
 export const getProfile = (userId: number) => (dispatch: Function) => {
     profileAPI.getProfile(userId)
