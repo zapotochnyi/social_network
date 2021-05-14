@@ -8,7 +8,16 @@ const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 const TOGGLE_BUTTON_DISABLE = 'TOGGLE_BUTTON_DISABLE';
 
-let initialState = {
+type InitialStateType = {
+    users: Array<any>
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
+    isFetching: boolean
+    buttonDisableInProgress: Array<any>
+}
+
+let initialState: InitialStateType = {
     users: [],
     pageSize: 10,
     totalUsersCount: 0,
@@ -17,7 +26,7 @@ let initialState = {
     buttonDisableInProgress: []
 }
 
-const usersReducer = (state = initialState, action) => {
+const usersReducer = (state = initialState, action: any): InitialStateType => {
     switch (action.type) {
         case FOLLOW:
             return {
@@ -68,17 +77,47 @@ const usersReducer = (state = initialState, action) => {
 
 }
 
-export const followUserSuccess = (userId) => ({type: FOLLOW, userId});
-export const unfollowUserSuccess = (userId) => ({type: UNFOLLOW, userId});
-export const setUsers = (users) => ({type: SET_USERS, users});
-export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage});
-export const setTotalUsersCount = (totalUsersCount) => ({type: SET_TOTAL_USERS_COUNT, count: totalUsersCount});
-export const toggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching});
-export const toggleButtonDisable = (isFetching, userId) => ({type: TOGGLE_BUTTON_DISABLE, isFetching, userId});
+type FollowUserSuccessActionType = {
+    type: typeof FOLLOW
+    userId: number
+}
+type UnfollowUserSuccessActionType = {
+    type: typeof UNFOLLOW
+    userId: number
+}
+type SetUsersActionType = {
+    type: typeof SET_USERS
+    users: Array<any>
+}
+type SetCurrentPageActionType = {
+    type: typeof SET_CURRENT_PAGE
+    currentPage: number 
+}
+type SetTotalUsersCountActionType = {
+    type: typeof SET_TOTAL_USERS_COUNT
+    count: number
+}
+type ToggleIsFetchingActionType = {
+    type: typeof TOGGLE_IS_FETCHING
+    isFetching: boolean
+}
+type ToggleButtonDisableActionType = {
+    type: typeof TOGGLE_BUTTON_DISABLE
+    isFetching: boolean
+    userId: number
+}
 
-export const getUsers = (pageSize, currentPage) => {
+export const followUserSuccess = (userId: number): FollowUserSuccessActionType => ({type: FOLLOW, userId});
+export const unfollowUserSuccess = (userId: number): UnfollowUserSuccessActionType => ({type: UNFOLLOW, userId});
+export const setUsers = (users: Array<any>): SetUsersActionType => ({type: SET_USERS, users});
+export const setCurrentPage = (currentPage: number): SetCurrentPageActionType => ({type: SET_CURRENT_PAGE, currentPage});
+export const setTotalUsersCount = (totalUsersCount: number): SetTotalUsersCountActionType => ({type: SET_TOTAL_USERS_COUNT, count: totalUsersCount});
+export const toggleIsFetching = (isFetching: boolean): ToggleIsFetchingActionType => ({type: TOGGLE_IS_FETCHING, isFetching});
+export const toggleButtonDisable = (isFetching: boolean, userId: number): ToggleButtonDisableActionType => ({type: TOGGLE_BUTTON_DISABLE, isFetching, userId});
 
-    return (dispatch) => {
+export const getUsers = (pageSize: number, currentPage: number) => {
+
+    return (dispatch: Function) => {
 
         dispatch(toggleIsFetching(true));
 
@@ -90,8 +129,8 @@ export const getUsers = (pageSize, currentPage) => {
             });
     }
 }
-export const followUser = (id) => {
-    return (dispatch) => {
+export const followUser = (id: number) => {
+    return (dispatch: Function) => {
         dispatch(toggleButtonDisable(true, id));
         usersAPI.followUser(id)
             .then(responce => {
@@ -102,8 +141,8 @@ export const followUser = (id) => {
             })
     }
 }
-export const unfollowUser = (id) => {
-    return (dispatch) => {
+export const unfollowUser = (id: number) => {
+    return (dispatch: Function) => {
         dispatch(toggleButtonDisable(true, id));
         usersAPI.unfollowUser(id)
             .then(responce => {

@@ -5,14 +5,16 @@ const SET_AUTH_USER_DATA = 'SET_AUTH_USER_DATA';
 const SET_USER_PHOTO = 'SET_USER_PHOTO';
 
 let initialState = {
-    id: null,
-    email: null,
-    login: null,
-    photo: null,
+    id: null as number | null,
+    email: null as string | null,
+    login: null as string | null,
+    photo: null as string | null,
     isAuth: false
 }
 
-const authReducer = (state = initialState, action) => {
+export type InitialStateType = typeof initialState;
+
+const authReducer = (state = initialState, action: any): InitialStateType => {
 
     switch (action.type) {
         case SET_AUTH_USER_DATA:
@@ -33,13 +35,28 @@ const authReducer = (state = initialState, action) => {
 
 }
 
-export const setAuthUserData = (id, email, login, isAuth) => ({
+type payloadType = {
+    id: number | null
+    email: string | null
+    login: string | null
+    isAuth: boolean
+}
+type SetAuthUserDataActionType = {
+    type: typeof SET_AUTH_USER_DATA
+    payload: payloadType
+}
+type SetUserPhotoActionType = {
+    type: typeof SET_USER_PHOTO
+    photo: string
+}
+
+export const setAuthUserData = (id: number | null, email: string | null, login: string | null, isAuth: boolean): SetAuthUserDataActionType => ({
     type: SET_AUTH_USER_DATA,
     payload: {id, email, login, isAuth}
 });
-export const setUserPhoto = (photo) => ({type: SET_USER_PHOTO, photo});
+export const setUserPhoto = (photo: string): SetUserPhotoActionType => ({type: SET_USER_PHOTO, photo});
 
-export const getAuthUserData = () => (dispatch) => {
+export const getAuthUserData = () => (dispatch: Function) => {
     authAPI.getAuthUserData()
         .then(responce => {
             if (responce.data.resultCode === 0) {
@@ -48,7 +65,7 @@ export const getAuthUserData = () => (dispatch) => {
             }
         })
 }
-export const setAuthUserPhoto = (id) => (dispatch) => {
+export const setAuthUserPhoto = (id: number) => (dispatch: Function) => {
     authAPI.setAuthUserPhoto(id)
         .then(responce => {
             if (responce.data.resultCode === 0) {
@@ -56,7 +73,7 @@ export const setAuthUserPhoto = (id) => (dispatch) => {
             }
         })
 }
-export const login = (email, password, rememberMe) => (dispatch) => {
+export const login = (email: string, password: string, rememberMe: boolean) => (dispatch: Function) => {
     authAPI.login(email, password, rememberMe)
         .then(responce => {
             if (responce.data.resultCode === 0) {
@@ -68,7 +85,7 @@ export const login = (email, password, rememberMe) => (dispatch) => {
             }
         })
 }
-export const logout = () => (dispatch) => {
+export const logout = () => (dispatch: Function) => {
     authAPI.logout()
         .then(responce => {
             if (responce.data.resultCode === 0) {

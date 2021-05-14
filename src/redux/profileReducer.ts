@@ -29,7 +29,7 @@ type PostsType = [
 ]
 
 export type InitialStateType = {
-    posts: PostsType,
+    posts: PostsType | any,
     profileInfo: Object | null,
     status: string
 }
@@ -64,7 +64,7 @@ let initialState: InitialStateType = {
     status: ''
 }
 
-const profileReducer = (state = initialState, action: any) => {
+const profileReducer = (state = initialState, action: any): InitialStateType => {
 
     switch (action.type) {
         case ADD_POST:
@@ -77,7 +77,6 @@ const profileReducer = (state = initialState, action: any) => {
             }
             return {
                 ...state,
-                newPostValue: '',
                 posts: [...state.posts, newPost],
 
             }
@@ -97,9 +96,27 @@ const profileReducer = (state = initialState, action: any) => {
 
 }
 
-export const addPost = (newPostText: string) => ({type: ADD_POST, newPostText});
-export const setUserProfile = (profileInfo: Object) => ({type: SET_USER_PROFILE, profileInfo});
-export const setUserStatus = (status: string) => ({type: SET_USER_STATUS, status});
+type AddPostActionType = {
+    type: typeof ADD_POST
+    newPostText: string
+}
+type ProfileInfoType = {
+    id: number
+    login: string
+    email: string
+}
+type SetUserProfileActionType = {
+    type: typeof SET_USER_PROFILE
+    profileInfo: ProfileInfoType
+}
+type SetUserStatusActionType = {
+    type: typeof SET_USER_STATUS
+    status: string
+}
+
+export const addPost = (newPostText: string): AddPostActionType =>  ({type: ADD_POST, newPostText});
+export const setUserProfile = (profileInfo: ProfileInfoType): SetUserProfileActionType => ({type: SET_USER_PROFILE, profileInfo});
+export const setUserStatus = (status: string): SetUserStatusActionType => ({type: SET_USER_STATUS, status});
 
 export const getProfile = (userId: number) => (dispatch: Function) => {
     profileAPI.getProfile(userId)

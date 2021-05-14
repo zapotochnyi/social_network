@@ -1,5 +1,19 @@
 const SEND_MESSAGE = 'SEND-MESSAGE';
 
+type DialogType = {
+    id: string
+    avatar: string
+    name: string
+}
+type MessageInType = {
+    idIn: number
+    textIn: string
+}
+type MessageOutType = {
+    idOut: number
+    textOut: string
+}
+
 let initialState = {
     dialogs: [
         {
@@ -32,23 +46,24 @@ let initialState = {
             avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-fBwuripjp81ckv2C-eE_ieYXuEll5zEb1w&usqp=CAU',
             name: 'Gosha'
         }
-    ],
+    ] as Array<DialogType>,
 
     messagesIn: [
         {idIn: 1, textIn: 'Hello!'},
         {idIn: 2, textIn: 'How you doing?'},
         {idIn: 3, textIn: 'Lets go drink some russian vodka!!!'},
-
-    ],
+    ] as Array<MessageInType>,
 
     messagesOut: [
         {idOut: 1, textOut: 'Okay, lets go!'},
         {idOut: 2, textOut: 'YEEE,BOOOZEE!!'},
-    ]
+    ] as Array<MessageOutType>
 
 }
 
-const messagesReducer = (state = initialState, action) => {
+export type InitialStateType = typeof initialState;
+
+const messagesReducer = (state = initialState, action: any): InitialStateType => {
 
     switch (action.type) {
 
@@ -68,6 +83,11 @@ const messagesReducer = (state = initialState, action) => {
 
 }
 
-export const addMessage = (newMessageText) => ({type: SEND_MESSAGE, newMessageText})
+type AddMessageType = {
+    type: typeof SEND_MESSAGE
+    newMessageText: string
+}
+
+export const addMessage = (newMessageText: string): AddMessageType => ({type: SEND_MESSAGE, newMessageText})
 
 export default messagesReducer;

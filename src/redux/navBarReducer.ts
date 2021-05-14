@@ -18,7 +18,7 @@ let initialState = {
     ],
 }
 
-const navBarReducer = (state = initialState, action) => {
+const navBarReducer = (state = initialState, action: any) => {
 
 
     return state;
