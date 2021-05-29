@@ -57,7 +57,7 @@ export const setAuthUserData = (id: number | null, email: string | null, login: 
 export const setUserPhoto = (photo: string): SetUserPhotoActionType => ({type: SET_USER_PHOTO, photo});
 
 export const getAuthUserData = () => (dispatch: Function) => {
-    authAPI.getAuthUserData()
+    return authAPI.getAuthUserData()
         .then(responce => {
             if (responce.data.resultCode === 0) {
                 let {id, email, login} = responce.data.data;
