@@ -66,7 +66,7 @@ export const getAuthUserData = () => (dispatch: Function) => {
         })
 }
 export const setAuthUserPhoto = (id: number) => (dispatch: Function) => {
-    authAPI.setAuthUserPhoto(id)
+   return authAPI.setAuthUserPhoto(id)
         .then(responce => {
             if (responce.data.resultCode === 0) {
                 dispatch(setUserPhoto(responce.data.photos.small));
@@ -74,7 +74,7 @@ export const setAuthUserPhoto = (id: number) => (dispatch: Function) => {
         })
 }
 export const login = (email: string, password: string, rememberMe: boolean) => (dispatch: Function) => {
-    authAPI.login(email, password, rememberMe)
+   return authAPI.login(email, password, rememberMe)
         .then(responce => {
             if (responce.data.resultCode === 0) {
                 dispatch(getAuthUserData());
@@ -86,7 +86,7 @@ export const login = (email: string, password: string, rememberMe: boolean) => (
         })
 }
 export const logout = () => (dispatch: Function) => {
-    authAPI.logout()
+  return authAPI.logout()
         .then(responce => {
             if (responce.data.resultCode === 0) {
                 dispatch(setAuthUserData(null, null, null, false));
