@@ -2,7 +2,6 @@ import React from 'react';
 import s from './Description.module.css';
 import DefaultUserImg from "../../common/DefaultUserImg/DefaultUserImg";
 import ProfileStatus from "./ProfileStatus/ProfileStatus";
-import {updateUserStatus} from "../../../redux/profileReducer";
 
 const Description = (props) => {
     return (

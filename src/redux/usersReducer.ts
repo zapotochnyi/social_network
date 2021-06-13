@@ -115,7 +115,7 @@ export const setTotalUsersCount = (totalUsersCount: number): SetTotalUsersCountA
 export const toggleIsFetching = (isFetching: boolean): ToggleIsFetchingActionType => ({type: TOGGLE_IS_FETCHING, isFetching});
 export const toggleButtonDisable = (isFetching: boolean, userId: number): ToggleButtonDisableActionType => ({type: TOGGLE_BUTTON_DISABLE, isFetching, userId});
 
-export const getUsers = (pageSize: number, currentPage: number) => {
+export const requestUsers = (pageSize: number, currentPage: number) => {
 
     return (dispatch: Function) => {
 
