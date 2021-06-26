@@ -13,3 +13,14 @@
 .selected_page {
     font-weight: bold;
 }
+
+.prev_btn {
+    width: 20px;
+    cursor: pointer;
+}
+
+.next_btn {
+    width: 20px;
+    cursor: pointer;
+    margin-left: 5px;
+}

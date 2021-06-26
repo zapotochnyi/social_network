@@ -18,16 +18,17 @@ import {
   getCurrentPage,
   getIsFetching,
   getButtonDisableInProgress,
+  getPortionSize,
 } from "../../redux/selectors/usersSelectors";
 
 class UsersContainer extends React.Component {
   componentDidMount() {
-    const {pageSize, currentPage} = this.props;
+    const { pageSize, currentPage } = this.props;
     this.props.requestUsers(pageSize, currentPage);
   }
 
   onPageChanged = (currentPage) => {
-    const {setCurrentPage, requestUsers, pageSize} = this.props;
+    const { setCurrentPage, requestUsers, pageSize } = this.props;
     setCurrentPage(currentPage);
     requestUsers(pageSize, currentPage);
   };
@@ -35,11 +36,10 @@ class UsersContainer extends React.Component {
   render() {
     return (
       <>
-        {this.props.isFetching ? (
-          <Preloader />
-        ) : (
+        {
           <UsersPage
             users={this.props.users}
+            isFetching={this.props.isFetching}
             totalUsersCount={this.props.totalUsersCount}
             pageSize={this.props.pageSize}
             currentPage={this.props.currentPage}
@@ -47,8 +47,9 @@ class UsersContainer extends React.Component {
             unfollowUser={this.props.unfollowUser}
             onPageChanged={this.onPageChanged}
             buttonDisableInProgress={this.props.buttonDisableInProgress}
+            portionSize={this.props.portionSize}
           />
-        )}
+        }
       </>
     );
   }
@@ -62,6 +63,7 @@ const mapStateToProps = (state) => {
     currentPage: getCurrentPage(state),
     isFetching: getIsFetching(state),
     buttonDisableInProgress: getButtonDisableInProgress(state),
+    portionSize: getPortionSize(state),
   };
 };
 

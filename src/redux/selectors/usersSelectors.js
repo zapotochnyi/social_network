@@ -22,5 +22,9 @@ export const getButtonDisableInProgress = (state) => {
     return state.usersPage.buttonDisableInProgress
 };
 
+export const getPortionSize = (state) => {
+    return state.usersPage.portionSize
+};
+
 
 

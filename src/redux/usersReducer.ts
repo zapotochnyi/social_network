@@ -9,23 +9,17 @@ const SET_TOTAL_USERS_COUNT = "SET_TOTAL_USERS_COUNT";
 const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
 const TOGGLE_BUTTON_DISABLE = "TOGGLE_BUTTON_DISABLE";
 
-type InitialStateType = {
-  users: Array<any>;
-  pageSize: number;
-  totalUsersCount: number;
-  currentPage: number;
-  isFetching: boolean;
-  buttonDisableInProgress: Array<any>;
-};
-
-let initialState: InitialStateType = {
+let initialState = {
   users: [],
-  pageSize: 10,
+  pageSize: 20,
   totalUsersCount: 0,
   currentPage: 1,
   isFetching: true,
-  buttonDisableInProgress: [],
+  buttonDisableInProgress: [] as Array<any>,
+  portionSize: 20,
 };
+
+type InitialStateType = typeof initialState;
 
 const usersReducer = (state = initialState, action: any): InitialStateType => {
   switch (action.type) {

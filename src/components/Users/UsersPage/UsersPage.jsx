@@ -1,9 +1,11 @@
 import s from "./UsersPage.module.css";
 import Paginator from "../../common/Paginator/Paginator";
 import User from "./User/User";
+import Preloader from "../../common/Preloader/Preloader";
 
 const UsersPage = ({
   totalUsersCount,
+  isFetching,
   pageSize,
   onPageChanged,
   currentPage,
@@ -11,31 +13,31 @@ const UsersPage = ({
   followUser,
   buttonDisableInProgress,
   users,
+  portionSize,
   ...props
 }) => {
-  let pagesCount = Math.ceil(totalUsersCount / pageSize);
-
-  let pages = [];
-  for (let i = 1; i < pagesCount; i++) {
-    pages.push(i);
-  }
-
   return (
     <div className={s.users_wrapper}>
       <Paginator
-        pages={pages}
+        totalItemsCount={totalUsersCount}
+        pageSize={pageSize}
         onPageChanged={onPageChanged}
         currentPage={currentPage}
+        portionSize={portionSize}
       />
 
-      {users.map((u) => (
-        <User
-          user={u}
-          buttonDisableInProgress={buttonDisableInProgress}
-          unfollowUser={unfollowUser}
-          followUser={followUser}
-        />
-      ))}
+      {isFetching ? (
+        <Preloader />
+      ) : (
+        users.map((u) => (
+          <User
+            user={u}
+            buttonDisableInProgress={buttonDisableInProgress}
+            unfollowUser={unfollowUser}
+            followUser={followUser}
+          />
+        ))
+      )}
     </div>
   );
 };
