@@ -1,18 +1,34 @@
-import React from 'react';
-import c from './Information.module.css';
+import React from "react";
+import ContactLink from "./ContactLink";
+import s from "./Information.module.css";
 
-const Information = (props) =>{
+const Information = ({
+  aboutMe,
+  lookingForAJob,
+  lookingForAJobDescription,
+  facebook,
+  vk,
+  twitter,
+  instagram,
+  github,
+}) => {
+  return (
+    <div className={s.information}>
+      <div className={s.item}>{aboutMe}</div>
 
+      <div className={s.item}>
+        {lookingForAJob ? <span>{lookingForAJobDescription}</span> : null}
+      </div>
 
-    return(
-            <div className={c.information}>
-                <h2>{props.name}</h2>
-                <p className={c.item}>Date of birth: {props.date}</p>
-                <p className={c.item}>City: {props.city}</p>
-                <p className={c.item}>Education: {props.education}</p>
-                <p className={c.item}>Web Site: {props.web}</p>
-            </div>
-    )
-}
+      <div className={s.item}>
+        {facebook && <ContactLink link={facebook} text="facebook" />}
+        {vk && <ContactLink link={vk} text="vk" />}
+        {twitter && <ContactLink link={twitter} text="twitter" />}
+        {instagram && <ContactLink link={instagram} text="instagram" />}
+        {github && <ContactLink link={github} text="github" />}
+      </div>
+    </div>
+  );
+};
 
 export default Information;

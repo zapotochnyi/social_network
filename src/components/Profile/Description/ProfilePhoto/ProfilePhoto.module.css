@@ -1,8 +1,13 @@
-.avatar {
+.wrapper {
+    flex-direction: column;
+    display: flex;
+}
+
+.photo_wrap {
     height: 202px;
 }
 
-.avatar :first-child{
+.photo_wrap :first-child {
     width: 200px;
     height: 200px;
     border: 1px solid darkslategrey;
