@@ -1,0 +1,13 @@
+.job_wrap {
+    display: flex;
+    font-size: small;
+}
+
+.job_wrap input {
+    margin-right: 5px;
+}
+
+.form_item {
+    margin-bottom: 10px;
+    font-size: small;
+}

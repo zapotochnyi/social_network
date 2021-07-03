@@ -1,11 +1,15 @@
 import React from "react";
 
-const ContactLink = ({link, text}) => {
-    return (
-            <a href={link} target="_blank" rel="noreferrer" >
-              {text},{" "}
-            </a>
-    );
+const ContactLink = ({ link, title }) => {
+  return (
+    <>
+      {link && (
+        <a href={link} target="_blank" rel="noreferrer">
+          {title},{" "}
+        </a>
+      )}
+    </>
+  );
 };
 
 export default ContactLink;

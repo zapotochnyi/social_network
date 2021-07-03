@@ -3,29 +3,47 @@ import ContactLink from "./ContactLink";
 import s from "./Information.module.css";
 
 const Information = ({
+  fullName,
   aboutMe,
   lookingForAJob,
   lookingForAJobDescription,
-  facebook,
-  vk,
-  twitter,
-  instagram,
-  github,
+  contacts,
+  isOwner,
+  goToEditMode,
 }) => {
   return (
     <div className={s.information}>
-      <div className={s.item}>{aboutMe}</div>
-
-      <div className={s.item}>
-        {lookingForAJob ? <span>{lookingForAJobDescription}</span> : null}
+      <div className={s.name}>
+        <h2>{fullName}</h2>
       </div>
 
+      {isOwner && (
+        <div>
+          <button onClick={goToEditMode}>Edit</button>
+        </div>
+      )}
+
+      {aboutMe && (
+        <div className={s.item}>
+          <b>About me:</b> {aboutMe}
+        </div>
+      )}
+
       <div className={s.item}>
-        {facebook && <ContactLink link={facebook} text="facebook" />}
-        {vk && <ContactLink link={vk} text="vk" />}
-        {twitter && <ContactLink link={twitter} text="twitter" />}
-        {instagram && <ContactLink link={instagram} text="instagram" />}
-        {github && <ContactLink link={github} text="github" />}
+        <b>Looking for a job:</b> {lookingForAJob ? "yes" : "no"}
+      </div>
+
+      {lookingForAJob && (
+        <div className={s.item}>
+          <b>Professional skills:</b> {lookingForAJobDescription}
+        </div>
+      )}
+
+      <div className={s.item}>
+        <b>Contacts: </b>
+        {Object.keys(contacts).map((key) => {
+          return <ContactLink key={key} link={contacts[key]} title={key} />;
+        })}
       </div>
     </div>
   );

@@ -1,3 +1,6 @@
-.status_wrapper span {
+.status_wrapper {
     cursor: pointer;
+    color: rgb(26, 22, 22);
+    font-size: large;
+    height: 25px;
 }

@@ -6,7 +6,7 @@ const ProfilePhoto = ({ large, isOwner, savePhoto }) => {
   const onPhotoSelected = (e) => {
     if (e.target.files.length) {
       savePhoto(e.target.files[0]);
-    };
+    }
   };
 
   return (
@@ -15,7 +15,9 @@ const ProfilePhoto = ({ large, isOwner, savePhoto }) => {
         <img src={large || DefaultPhoto} alt="profile" />
       </div>
 
-      <div className={s.input_wrap}>{isOwner && <input type="file" onChange={onPhotoSelected} />}</div>
+      <div className={s.input_wrap}>
+        {isOwner && <input type="file" onChange={onPhotoSelected} />}
+      </div>
     </div>
   );
 };

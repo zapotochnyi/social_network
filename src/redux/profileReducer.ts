@@ -5,6 +5,7 @@ const SET_USER_PROFILE = "SET_USER_PROFILE";
 const SET_USER_STATUS = "SET_USER_STATUS";
 const DELETE_POST = "DELETE_POST";
 const SAVE_PHOTO_SUCCESS = "SAVE_PHOTO_SUCCESS";
+const SAVE_PROFILE_INFO_SUCCESS = "SAVE_PROFILE_INFO_SUCCESS";
 
 let initialState = {
   posts: [
@@ -72,7 +73,6 @@ const profileReducer = (
       };
 
     case SAVE_PHOTO_SUCCESS:
-      debugger;
       return {
         ...state,
         profileInfo: { ...state.profileInfo, photos: action.photos },
@@ -104,26 +104,27 @@ export const setUserStatus = (status: string) =>
 export const deletePost = (postId: number) =>
   ({ type: DELETE_POST, postId } as const);
 
-export const savePhotoSuccess = (photos: Object) => ({
-  type: SAVE_PHOTO_SUCCESS,
-  photo: photos,
-});
+export const savePhotoSuccess = (photos: Object) =>
+  ({
+    type: SAVE_PHOTO_SUCCESS,
+    photos,
+  } as const);
 
 export const getProfile = (userId: number) => async (dispatch: Function) => {
-  let response = await profileAPI.getProfile(userId);
+  const response = await profileAPI.getProfile(userId);
 
   dispatch(setUserProfile(response.data));
 };
 
 export const getUserStatus = (userId: number) => async (dispatch: Function) => {
-  let response = await profileAPI.getStatus(userId);
+  const response = await profileAPI.getStatus(userId);
 
   dispatch(setUserStatus(response.data));
 };
 
 export const updateUserStatus =
   (status: string) => async (dispatch: Function) => {
-    let response = await profileAPI.updateStatus(status);
+    const response = await profileAPI.updateStatus(status);
 
     if (response.data.resultCode === 0) {
       dispatch(setUserStatus(status));
@@ -131,11 +132,20 @@ export const updateUserStatus =
   };
 
 export const savePhoto = (file: any) => async (dispatch: Function) => {
-  let response = await profileAPI.savePhoto(file);
+  const response = await profileAPI.savePhoto(file);
 
   if (response.data.resultCode === 0) {
     dispatch(savePhotoSuccess(response.data.data.photos));
   }
 };
-//пофіксити баг з зміною фотки
+
+export const saveProfileInfo = (info: Object) => async (dispatch: Function, getState: Function) => {
+  const userId = getState().auth.id;
+  const response = await profileAPI.saveProfileInfo(info);
+
+  if (response.data.resultCode === 0) {
+    dispatch(getProfile(userId));
+  }
+};
+
 export default profileReducer;

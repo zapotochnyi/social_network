@@ -26,16 +26,22 @@ const ProfileStatus = (props) => {
     <>
       <div className={s.status_wrapper}>
         {!editMode ? (
-          <span onClick={activateEditMode}>
-            {props.status || "there will be status"}
-          </span>
+          <div>
+            <b>
+              <span onDoubleClick={activateEditMode}>
+                {props.status || "there will be status"}
+              </span>
+            </b>
+          </div>
         ) : (
-          <input
-            onChange={onStatusChange}
-            autoFocus={true}
-            onBlur={deactivateEditMode}
-            value={status}
-          />
+          <div>
+            <input
+              onChange={onStatusChange}
+              autoFocus={true}
+              onBlur={deactivateEditMode}
+              value={status}
+            />
+          </div>
         )}
       </div>
     </>

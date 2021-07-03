@@ -6,11 +6,15 @@
     padding-left: 10px;
 }
 
-.name_status{
-    margin-bottom: 15px;
-    margin-left: 10px;
-    /* border-bottom: 1px solid grey; */
+.name_info_wrap {
+    margin-left: 15px;
 }
+
+
+.photo_status {
+}
+
+
 
 
 

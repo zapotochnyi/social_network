@@ -11,7 +11,8 @@ const Profile = ({
   updateUserStatus,
   profile,
   addPost,
-  savePhoto
+  savePhoto,
+  saveProfileInfo,
 }) => {
   return (
     <div className={s.profile_wrapper}>
@@ -22,6 +23,7 @@ const Profile = ({
         savePhoto={savePhoto}
         status={status}
         updateUserStatus={updateUserStatus}
+        saveProfileInfo={saveProfileInfo}
       />
       <MyPosts profile={profile} addPost={addPost} />
     </div>
