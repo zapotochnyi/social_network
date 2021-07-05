@@ -66,18 +66,18 @@ export const setUserPhoto = (photo: string): SetUserPhotoActionType => ({
 });
 
 export const getAuthUserData = () => (dispatch: Function) => {
-  return authAPI.getAuthUserData().then((responce) => {
-    if (responce.data.resultCode === 0) {
-      let { id, email, login } = responce.data.data;
+  return authAPI.getAuthUserData().then((response) => {
+    if (response.data.resultCode === 0) {
+      let { id, email, login } = response.data.data;
       dispatch(setAuthUserData(id, email, login, true));
     }
   });
 };
 
 export const setAuthUserPhoto = (id: number) => (dispatch: Function) => {
-  return authAPI.setAuthUserPhoto(id).then((responce) => {
-    if (responce.data.resultCode === 0) {
-      dispatch(setUserPhoto(responce.data.photos.small));
+  return authAPI.setAuthUserPhoto(id).then((response) => {
+    if (response.data.resultCode === 0) {
+      dispatch(setUserPhoto(response.data.photos.small));
     }
   });
 };
@@ -90,11 +90,11 @@ export const login =
     if (response.data.resultCode === 0) {
       dispatch(getAuthUserData());
     } else {
-      let errorMessage =
+      const errorMessage =
         response.data.messages.length > 0
-          ? response.data.messages
+          ? response.data.messages[0]
           : "Undefined error";
-      let action = stopSubmit("login", { _error: errorMessage });
+      const action = stopSubmit("login", { _error: errorMessage });
       dispatch(action);
     }
   };

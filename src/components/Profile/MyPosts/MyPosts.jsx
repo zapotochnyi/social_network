@@ -5,7 +5,7 @@ import NewPost from "./New Post/NewPost";
 
 const MyPosts = (props) => {
     let postElement = props.profile.posts.map(p => (
-        <Post avatar={p.avatar} name={p.name} text={p.text} quantity_likes={p.quantity_likes} quantity_reposts={p.quantity_reposts}/>))
+        <Post key={p.id} avatar={p.avatar} name={p.name} text={p.text} quantity_likes={p.quantity_likes} quantity_reposts={p.quantity_reposts}/>))
 
     return (
         <div className={c.posts}>

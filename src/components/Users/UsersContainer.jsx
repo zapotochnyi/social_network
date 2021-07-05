@@ -8,7 +8,6 @@ import {
   unfollowUser,
 } from "../../redux/usersReducer";
 import UsersPage from "./UsersPage/UsersPage";
-import Preloader from "../common/Preloader/Preloader";
 import { compose } from "redux";
 import withAuthRedirect from "../../hoc/withAuthRedirect";
 import {

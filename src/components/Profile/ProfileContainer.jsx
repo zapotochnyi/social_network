@@ -6,7 +6,7 @@ import {
   setUserProfile,
   updateUserStatus,
   savePhoto,
-  saveProfileInfo
+  saveProfileInfo,
 } from "../../redux/profileReducer";
 import { connect } from "react-redux";
 import Profile from "./Profile";
@@ -24,7 +24,7 @@ class ProfileContainer extends React.Component {
   refreshProfile() {
     const { getProfile, getUserStatus, authorisedUserId } = this.props;
 
-    let userId = this.props.match.params.userId
+    let userId = this.props.match.params.userId;
     if (!userId) userId = authorisedUserId;
 
     getProfile(userId);
@@ -55,6 +55,7 @@ class ProfileContainer extends React.Component {
             status={this.props.profile.status}
             updateUserStatus={this.props.updateUserStatus}
             saveProfileInfo={this.props.saveProfileInfo}
+            isProfileInfoSuccess={this.props.profile.isProfileInfoSuccess}
           />
         )}
       </>

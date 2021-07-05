@@ -1,3 +1,4 @@
+import { stopSubmit } from "redux-form";
 import { profileAPI } from "../api/api";
 
 const ADD_POST = "ADD-POST";
@@ -5,7 +6,7 @@ const SET_USER_PROFILE = "SET_USER_PROFILE";
 const SET_USER_STATUS = "SET_USER_STATUS";
 const DELETE_POST = "DELETE_POST";
 const SAVE_PHOTO_SUCCESS = "SAVE_PHOTO_SUCCESS";
-const SAVE_PROFILE_INFO_SUCCESS = "SAVE_PROFILE_INFO_SUCCESS";
+const PROFILE_INFO_SUCCESS = "PROFILE_INFO_SUCCESS";
 
 let initialState = {
   posts: [
@@ -37,6 +38,7 @@ let initialState = {
 
   profileInfo: null as any,
   status: "",
+  isProfileInfoSuccess: false,
 };
 
 type InitialStateType = typeof initialState;
@@ -78,6 +80,12 @@ const profileReducer = (
         profileInfo: { ...state.profileInfo, photos: action.photos },
       };
 
+    case PROFILE_INFO_SUCCESS:
+      return {
+        ...state,
+        isProfileInfoSuccess: action.isSuccess,
+      };
+
     default:
       return state;
   }
@@ -110,6 +118,9 @@ export const savePhotoSuccess = (photos: Object) =>
     photos,
   } as const);
 
+export const profileInfoSuccess = (isSuccess: boolean) =>
+  ({ type: PROFILE_INFO_SUCCESS, isSuccess } as const);
+
 export const getProfile = (userId: number) => async (dispatch: Function) => {
   const response = await profileAPI.getProfile(userId);
 
@@ -139,13 +150,24 @@ export const savePhoto = (file: any) => async (dispatch: Function) => {
   }
 };
 
-export const saveProfileInfo = (info: Object) => async (dispatch: Function, getState: Function) => {
-  const userId = getState().auth.id;
-  const response = await profileAPI.saveProfileInfo(info);
+export const saveProfileInfo =
+  (info: Object) => async (dispatch: Function, getState: Function) => {
+    const userId = getState().auth.id;
+    const response = await profileAPI.saveProfileInfo(info);
 
-  if (response.data.resultCode === 0) {
-    dispatch(getProfile(userId));
-  }
-};
+    if (response.data.resultCode === 0) {
+      dispatch(getProfile(userId));
+      dispatch(profileInfoSuccess(true));
+    } else {
+      const errorMessage =
+        response.data.messages.length > 0
+          ? response.data.messages[0]
+          : "Undefined error";
+
+      const action = stopSubmit("edit-profile-information", {_error: errorMessage});
+      dispatch(action);
+      dispatch(profileInfoSuccess(false));
+    }
+  };
 
 export default profileReducer;

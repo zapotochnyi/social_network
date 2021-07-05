@@ -17,12 +17,6 @@ const Information = ({
         <h2>{fullName}</h2>
       </div>
 
-      {isOwner && (
-        <div>
-          <button onClick={goToEditMode}>Edit</button>
-        </div>
-      )}
-
       {aboutMe && (
         <div className={s.item}>
           <b>About me:</b> {aboutMe}
@@ -45,6 +39,12 @@ const Information = ({
           return <ContactLink key={key} link={contacts[key]} title={key} />;
         })}
       </div>
+
+      {isOwner && (
+        <div>
+          <button onClick={goToEditMode}>Edit</button>
+        </div>
+      )}
     </div>
   );
 };

@@ -5,7 +5,7 @@ import FriendItem from "./FriendItem/FriendItem";
 
 const FriendsBar = (props) => {
 
-    let friendItemElement = props.friends.map(f => (<FriendItem avatar={f.avatar} name={f.name}/>));
+    let friendItemElement = props.friends.map(f => (<FriendItem key={f.id} avatar={f.avatar} name={f.name}/>));
 
     return (
         <div className={c.friends_bar}>

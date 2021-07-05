@@ -6,7 +6,7 @@ const Dialog = (props) => {
     const path = '/messages/' + props.id;
     return (
         <div className={c.dialog_wrap}>
-            <img className={c.avatar} src={props.avatar}/>
+            <img className={c.avatar} src={props.avatar} alt="avatar"/>
             <NavLink to={path} activeClassName={c.active_dialog} className={c.dialog}>{props.name}</NavLink>
         </div>
     )

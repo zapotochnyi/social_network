@@ -52,7 +52,7 @@ const usersReducer = (state = initialState, action: any): InitialStateType => {
         ...state,
         buttonDisableInProgress: action.isFetching
           ? [...state.buttonDisableInProgress, action.userId]
-          : state.buttonDisableInProgress.filter((id) => id != action.userId),
+          : state.buttonDisableInProgress.filter((id) => id !== action.userId),
       };
 
     default:

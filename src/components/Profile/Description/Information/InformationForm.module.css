@@ -1,3 +1,7 @@
+.form_wrapper {
+    display: flex;
+}
+
 .job_wrap {
     display: flex;
     font-size: small;
@@ -11,3 +15,14 @@
     margin-bottom: 10px;
     font-size: small;
 }
+
+.contacts_item {
+    margin-left: 15px;
+}
+
+.error_message :only-child {
+    color: red;
+}
+
+
+

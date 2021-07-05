@@ -5,7 +5,7 @@ const ContactLink = ({ link, title }) => {
     <>
       {link && (
         <a href={link} target="_blank" rel="noreferrer">
-          {title},{" "}
+          {title}{" "}
         </a>
       )}
     </>

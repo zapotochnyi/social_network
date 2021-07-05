@@ -1,5 +1,4 @@
 import React from 'react';
-import {Field} from "redux-form";
 import {createField, Input} from "../../common/FormControls/FormControls";
 import {maxLengthCreator, minLengthCreator, required} from "../../../utils/validators/validators";
 import s from './LoginForm.module.css'

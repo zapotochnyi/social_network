@@ -19,9 +19,10 @@ const Description = ({
   status,
   updateUserStatus,
   saveProfileInfo,
+  isProfileInfoSuccess,
 }) => {
   let [editMode, setEditMode] = useState(false);
-  
+
   let initialProfileInfo = {
     fullName,
     aboutMe,
@@ -32,9 +33,10 @@ const Description = ({
 
   const onSubmit = (formData) => {
     saveProfileInfo(formData);
-    setEditMode(false);
+    if (isProfileInfoSuccess) {
+      setEditMode(false);
+    };
   };
-
 
   return (
     <div className={s.description}>
@@ -48,6 +50,7 @@ const Description = ({
           <InformationFormReduxForm
             initialValues={initialProfileInfo}
             onSubmit={onSubmit}
+            contacts={contacts}
           />
         ) : (
           <Information

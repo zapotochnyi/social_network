@@ -5,7 +5,7 @@ import preloader from './../../../assets/images/loading1.gif'
 const Preloader = (props) => {
     return (
         <div className={s.preloader_wrap}>
-            <img src={preloader} />
+            <img src={preloader} alt="loading" />
         </div>
     )
 }
