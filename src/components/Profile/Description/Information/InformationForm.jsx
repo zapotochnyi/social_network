@@ -11,6 +11,7 @@ import {
   Textarea,
 } from "../../../common/FormControls/FormControls";
 import s from "./InformationForm.module.css";
+import cn from "classnames";
 
 const minLength5 = minLengthCreator(5);
 const maxLength20 = maxLengthCreator(20);
@@ -33,7 +34,7 @@ const InformationForm = ({ onSubmit, handleSubmit, contacts, error }) => {
           {createField(Textarea, "aboutMe", "About me", [])}
         </div>
 
-        <div className={s.job_wrap + " " + s.form_item}>
+        <div className={cn(s.job_wrap, s.form_item)}>
           <div>
             {createField(Input, "lookingForAJob", "", [], { type: "checkbox" })}
           </div>
@@ -63,7 +64,7 @@ const InformationForm = ({ onSubmit, handleSubmit, contacts, error }) => {
         </div>
       </div>
 
-      <div className={s.form_item + " " + s.contacts_item}>
+      <div className={cn(s.form_item, s.contacts_item)}>
         {Object.keys(contacts).map((key) => {
           return (
             <div key={key}>

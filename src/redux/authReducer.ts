@@ -58,10 +58,11 @@ export const setUserPhoto = (photo: string) =>
     photo,
   } as const);
 
-export const setCaptchaUrl = (captchaUrl: any) => ({
-  type: SET_CAPTCHA_URL,
-  captchaUrl,
-});
+export const setCaptchaUrl = (captchaUrl: any) =>
+  ({
+    type: SET_CAPTCHA_URL,
+    captchaUrl,
+  } as const);
 
 export const getAuthUserData = () => (dispatch: Function) => {
   return authAPI.getAuthUserData().then((response) => {
